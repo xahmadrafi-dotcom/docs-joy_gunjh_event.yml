@@ -14,6 +14,7 @@ import {
   LogOut,
   Bot,
   User as UserIcon,
+  Sparkles,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -41,6 +42,12 @@ export function ChatSidebar({ isOpen, onClose, user }: ChatSidebarProps) {
       icon: MessageSquarePlus,
       label: "নতুন চ্যাট",
       href: "/chat",
+    },
+    {
+      icon: Sparkles,
+      label: "মহাজাগতিক ঐক্য",
+      href: "/cosmic",
+      badge: "✨",
     },
     {
       icon: CheckSquare,
@@ -111,15 +118,18 @@ export function ChatSidebar({ isOpen, onClose, user }: ChatSidebarProps) {
 
           {/* Navigation */}
           <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-            {menuItems.map((item) => (
+            {menuItems.map((item: any) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={onClose}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors relative group"
               >
                 <item.icon className="w-5 h-5 shrink-0" />
                 <span className="text-sm font-medium">{item.label}</span>
+                {item.badge && (
+                  <span className="ml-auto text-sm">{item.badge}</span>
+                )}
               </Link>
             ))}
           </nav>
